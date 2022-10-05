@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Disciplina</title>
+</head>
+<body>
+<br><br><br>
+<div class="card">
+  <div class="card-body">
+    <form novalidate  (ngSubmit)="onSubmit()" [formGroup]="disciplinaData">
+      <!-- INÍCIO BLOCO: ID -->
+      <div class="form-group">
+        <label class="font-weight-bold" for="id">ID da Disciplina:</label>
+        <input type="text" class="form-control" placeholder="Digite o ID da Disciplina" formControlName="id" #id />
+      </div>
+      <div *ngIf="validatorInputs('id')" class="alert alert-danger">
+        <div *ngIf="validatorErrorsRequired('id')">
+          O campo "id" é de preenchimento obrigatório.
+        </div>
+      </div>
+      <!-- FIM BLOCO: ID -->
+       <br>
+      <!-- INÍCIO BLOCO: Nome -->
+      <div class="form-group">
+        <label class="font-weight-bold" for="nome">Nome da Disciplina:</label>
+        <input type="text" class="form-control" placeholder="Digite um nome para a Disciplina" formControlName="nome" #nome />
+      </div>
+      <div *ngIf="validatorInputs('nome')" class="alert alert-danger">
+        <div *ngIf="validatorErrorsRequired('nome')">
+          O campo "nome" é de preenchimento obrigatório.
+        </div>
+      </div>
+      <!-- FIM BLOCO: Nome -->
+      <br>
+      <br><br>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit" [disabled]="disciplinaData.pristine || disciplinaData.invalid">
+          Enviar Dados
+        </button>
+        <p>Formulario: {{ formResult }}</p>
+      </div>
+      <br><br>
+        <!--------------------- Botão Voltar --------------------------->
+          <button (click)="voltar()">Voltar</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

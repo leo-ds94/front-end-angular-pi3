@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adicionar Livro</title>
+</head>
+
+<body>
+<div class="card">
+  <div class="card-body">
+    <form novalidate  (ngSubmit)="onSubmit()" [formGroup]="livroData">
+      <!-- INÍCIO BLOCO: Nome -->
+      <div class="form-group">
+        <br><br><br>
+        <label class="font-weight-bold" for="nome">Nome do Livro:</label>
+        <input type="text" class="form-control" placeholder="Digite o nome aqui" formControlName="nome" #nome />
+      </div>
+      <div *ngIf="validatorInputs('nome')" class="alert alert-danger">
+        <div *ngIf="validatorErrorsRequired('nome')">
+          O campo "Nome" é de preenchimento obrigatório.
+        </div>
+      </div>
+      <!-- FIM BLOCO: Nome -->
+      <br>
+      <!-- INÍCIO BLOCO: Disciplina -->
+      <div class="form-group">
+        <label class="font-weight-bold" for="id_disciplina">Disciplina:</label>
+        <input class="form-control" type="text" class="form-control" placeholder="Selecione a Disciplina"
+          formControlName="id_disciplina" #id_disciplina />
+      </div>
+      <div *ngIf="validatorInputs('id_disciplina')" class="alert alert-danger">
+        <div *ngIf="validatorErrorsRequired('id_disciplina')">
+          O campo "Disciplina" é de preenchimento obrigatório.
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <label class="mr-sm-2" for="inlineFormCustomSelect">Selecione a Disciplina:</label>
+          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+            <option selected>Selecionar...</option>
+            <option *ngFor="let disciplina of disciplina">
+              {{ disciplina.nome }}</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+          <tr *ngFor="let disciplina of disciplina">
+            <td>
+            {{ disciplina.nome }}
+            </td>
+        </div>
+      <!-- FIM BLOCO: Disciplina -->
+      <br>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit" [disabled]="livroData.pristine || livroData.invalid">
+          Enviar Dados
+        </button>
+        <!--
+          Resultado do envio em Formato JSON
+          <p>Formulario: {{ formResult }}</p>-->
+      </div>
+      <br>
+        <!--------------------- Botão Voltar --------------------------->
+          <button (click)="back()">Voltar</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

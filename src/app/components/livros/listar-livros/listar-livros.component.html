@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Livros</title>
+</head>
+<body>
+<div class="container main-container">
+  <table class="table table-hover">
+      <thead class="thead-dark">
+          <tr>
+              <th>Nome</th>
+              <th>Disciplina</th>
+              <th>Opções</th>
+          </tr>
+      </thead>
+      <tr *ngFor="let livro of livro">
+          <td>
+          {{ livro.nome }}
+          </td>
+          <td>
+          {{ livro.id_disciplina }}
+        </td>
+          <td class="text-left">
+              <a [routerLink]="['/editar-livro', livro]" class="btn btn-warning">
+                  <span class="fa fa-pencil"></span>
+              </a>&nbsp;
+              <a (click)="excluirLivro(livro.id)" class="btn btn-danger">
+                  <span class="fa fa-trash"></span>
+              </a>
+          </td>
+      </tr>
+  </table>
+  <p>
+    <a class="btn btn-info" (click)="back()">Voltar</a>
+  </p>
+</div>
+<br>
+<div class="container">
+  <div class="row text-center">
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card h-100">
+          <img class="card-img-top" src="/assets/produtividade.jpg" height="130px" width="100px" alt="">
+          <div class="card-body">
+              <h4 class="card-title">Adicionar Livro</h4>
+          </div>
+          <div class="card-footer">
+              <a href="#" class="btn btn-primary" [routerLink]="['/add-livro']">Acessar</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
